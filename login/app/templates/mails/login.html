@@ -1,0 +1,76 @@
+{%extends 'base.html'%}
+
+{%block header%}
+<h1>{%block title%}Login{%endblock%}</h1>
+{%endblock%}
+
+
+{% block content %}
+<style>
+    
+    body {
+        overflow: hidden;
+    }
+    
+    .flash{
+    background-color: rgba(220, 18, 14, 0.83);
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+    font-weight: 700;
+    padding: 10px 15px;
+    border-radius: 5px; 
+    border: solid 1px rgba(0,0,0,0.1);
+    
+    } 
+
+</style>
+
+<form method="post">
+    <body>
+        {%block main%}
+        <!-- <div class="banner_img">
+            <img src="static/login.png" alt="">
+        </div> -->
+        {%endblock%}
+    
+        <div class="burbujas">
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+            <div class="burbujas"></div>
+    
+        </div>
+    
+
+        <div class="group">
+  
+            <div class="title-login">
+                
+                {% with message = get_flashed_messages()%}
+                {%if messages%}
+                <ul>
+                    {%for messages in messages%}
+                    {{message}}
+                    {%endfor%}
+                </ul>
+                {%endif%}
+                {%endwith%}
+                
+                <h1>INICIO DE SESION</h1>
+            </div>
+            <div class="login">
+                <br><label for="usuario"> Usuario</label>
+                <br><input name="username" type="text" minlength="2" maxlength="15" required placeholder="Coloca tu nombre de Usuario">
+                <br><label for="contraseña"> Password</label>
+                <br><input name="password" type="password" minlength="2" maxlength="10" required placeholder="Coloca tu Contraseña">
+                <button class="button"> Enviar</button>
+            </div>
+            
+        </div>
+    </body>
+</form>
+{%endblock%}

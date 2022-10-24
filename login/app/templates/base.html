@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<title>{%block title%}{%endblock%}-DATA BASE </title>
+<link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+
+
+
+<section class="content">
+
+    <div>
+        {% block content %}{%endblock%}
+    </div>
+
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {%endfor%}
+    
+
+</section>
+</html>

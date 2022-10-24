@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{%block header%}
+<h1>{%block title%}CREACIÓN{%endblock%}</h1>
+{%endblock%}
+
+{%block content%}
+
+<!-- destacamos las limitantes puestas para cada uno de los campos y las caracteristicas que debe de tener en su llenado 
+el resto del codigo nos apoya para el formato de nuestra pestaña.  -->
+<body>
+    <style>
+
+        body {
+            background-image: url("https://fondosmil.com/fondo/17546.jpg");
+            background-size: cover;
+        }
+
+        .flash {
+            background-color: rgba(10, 112, 0, 0.83);
+            font-family: 'Quicksand', sans-serif;
+            position: relative;
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: solid 1px rgba(0, 0, 0, 0.1);
+
+        }
+    </style>
+
+<div class="barra">
+    {%block main%} <img src="/static/biosupport2.webp" width="140" height="70">{%endblock%}
+
+    <ul>
+        
+        <li><a href="{{url_for('mail.index')}}"> Página Inicial</a></li>
+        <li><a href="{{url_for('mail.new')}}"> Nueva Usuario</a></li>
+        <li><a href="{{url_for('mail.calendar')}}">Calendario</a></li>
+        <li><a href="{{url_for('mail.login')}}">Logout</a></li>
+        
+
+    </ul>
+
+
+</div>
+
+    <nav>
+        <b>NUEVO DOCUMENTO</b>
+    </nav>
+
+
+    {% with message = get_flashed_messages()%}
+    {%if messages%}
+    <ul>
+        {%for messages in messages%}
+        {{message}}
+        {%endfor%}
+    </ul>
+    {%endif%}
+    {%endwith%}
+    <div class="content-create">
+
+        <form method="post">
+            <div class="columnas">
+
+
+                <b>
+                    <h2>Datos Generales</h2>
+                </b>
+
+                <div class="form-group">
+                    <label for="folio"> Folio</label>
+                    <input name="folio" type="text" id="folio" minlength="2" maxlength="10" required pattern="[0-9]+">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input name="fecha" type="date" id="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="ingeniero">Ingeniero</label>
+                    <input name="ingeniero" type="text" id="ingeniero" minlength="4" maxlength="15" required
+                        pattern="[A-Za-z ]+" title="#Solo Letras#">
+                </div>
+
+                <b>
+                    <h2>Datos del Equipo</h2>
+                </b>
+
+                <div class="form-group">
+                    <label for="equipo">Equipo</label>
+                    <input name="equipo" type="text" id="equipo" minlength="4" maxlength="25" required
+                        pattern="[A-Za-z ]+" title="#Solo Letras#">
+                </div>
+                <div class="form-group">
+                    <label for="marca">Marca</label>
+                    <input name="marca" type="text" id="marca" minlength="4" maxlength="35" required
+                        pattern="[A-Za-z ]+" title="#No caracteres especiales#">
+                </div>
+                <div class="form-group">
+                    <label for="modelo">Modelo</label>
+                    <input name="modelo" type="text" id="modelo" minlength="4" maxlength="35" required
+                        pattern="[A-Za-z0-9 ]+" title="#No caracteres especiales#">
+                </div>
+                <div class="form-group">
+                    <label for="ns">N. Serie</label>
+                    <input name="" type="text" id="ciudad" minlength="4" maxlength="35" pattern="[A-Za-z0-9 ]+"
+                        title="#No caracteres especiales#">
+                </div>
+                <div class="form-group">
+                    <label for="niv">N. Inventario</label>
+                    <input name="niv" type="text" id="niv" minlength="4" maxlength="35" pattern="[A-Za-z0-9 ]+"
+                        title="#No caracteres especiales#">
+                </div>
+                <div class="form-group">
+                    <label for="servicion">Tipo de Servicio</label>
+                    <input name="servicio" type="text" id="servicio" minlength="3" maxlength="25" required
+                        pattern="[A-Za-z ]+" title="#No caracteres especiales# #No numeros#">
+                </div>
+
+            </div>
+
+            <div class="columnas">
+
+                <b>
+                    <h2>Ubicación</h2>
+                </b>
+
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input name="estado" type="text" id="estado" minlength="3" maxlength="25" required
+                        pattern="[A-Za-z ]+" title="#No caracteres especiales# #No numeros#">
+                </div>
+                <div class="form-group">
+                    <label for="ciudad">Ciudad</label>
+                    <input name="ciudad" type="text" id="ciudad" minlength="3" maxlength="25" required
+                        pattern="[A-Za-z ]+" title="#No caracteres especiales# #No numeros#">
+                </div>
+                <div class="form-group">
+                    <label for="unidad">Unidad</label>
+                    <input name="unidad" type="text" id="unidad" minlength="3" maxlength="25" required
+                        pattern="[A-Za-z0-9 ]+" title="#No caracteres especiales#">
+                </div>
+
+                <div class="form-group">
+                    <h3><label for="contenido">Descripción del Servicio</label></h3>
+                    <textarea name="contenido" type="text" id="contenido" minlength="5" required pattern="[A-Za-z0-9 ]+"
+                        title="#No caracteres especiales#"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="button"> Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+<footer>
+
+</footer>
+{%endblock%}

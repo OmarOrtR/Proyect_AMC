@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{%block title%}CALENDARIO{%endblock%}
+{%block content%}
+
+<!-- Utilizamos un formato personalizado y se ocupa de referencia una plantilla tipo javascript llamada fullcalendar
+facilitando el acomodo de fechas, dias y busqueda de dia actual.  -->
+<!-- <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+</head> -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/16fda319fc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      background-image: url("https://fondosmil.com/fondo/17546.jpg");
+      background-size: cover;
+    }
+
+    .flash {
+      background-color: rgba(10, 112, 0, 0.83);
+      font-family: 'Quicksand', sans-serif;
+      position: relative;
+      font-weight: 700;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: solid 1px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+  <!-- 
+    <div class="barra">
+        {%block main%} <img src="/static/biosupport2.webp" width="140" height="70">{%endblock%}
+
+        <ul>
+            <li><a href="{{url_for('mail.create')}}"> Nueva Orden de Servicio</a></li>
+            <li><a href="{{url_for('mail.index')}}"> Página Inicial</a></li>
+            <li><a href="{{url_for('mail.new')}}"> Nueva Usuario</a></li>
+            <li><a href="{{url_for('mail.login')}}">Logout</a></li>
+
+        </ul>
+    </div> -->
+
+  <!-- <nav>
+        <b>CALENDARIO DE ACTIVIDADES</b>
+    </nav> -->
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('mail.index')}}   ">CALENDARIO DE ACTIVIDADES</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{url_for('mail.add')}}">Agregar evento</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="login" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+  {% with message = get_flashed_messages()%}
+  {%if messages%}
+  <ul>
+    {%for messages in messages%}
+    {{message}}
+    {%endfor%}
+  </ul>
+  {%endif%}
+  {%endwith%}
+
+  <!-- CREACION DEL CALENDARIO -->
+  <!-- <div class="container my-3">
+    <div id="calendar"></div>
+  </div> -->
+
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        aspectRatio: 2.25,
+        events: [
+          {%for event in events %}  
+            {
+          title: '{{event.title}}',
+          start: '{{event.start}}',
+          end: '{{event.end}}',
+          url: '{{event.url}}',
+        },
+        {% endfor %}
+            ],
+      eventClick: function (info) {
+        info.jsEvent.preventDefault(); // don't let the browser navigate
+
+        if (info.event.url) {
+          window.open(info.event.url);
+        }
+      }
+          });
+    calendar.render();
+        });
+  </script> -->
+
+  <!-- <script>
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar
+        (calendarEl, {
+            initialView: 'dayCalendar'
+          
+        });
+
+        calendar.render();
+    </script> -->
+
+
+</body>
+{%endblock%}

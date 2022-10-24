@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{%block header%}
+<h1>{%block title%}REGISTROS{%endblock%}</h1>
+{%endblock%}
+{% block content %}
+
+<!-- BARRA DE NAVEGACION -->
+<!-- partimos del formato de style (css) personalizado para la pestaña que es donde se agrega el menu lateral,
+imagen del logo de la empresa y links de redireccionamiento. Este codigo nos apoya entrando en ciclo capaz
+de mostrar de forma ordenada cada uno de las filas con sus respectivos datos de cada variable, con una separacion 
+de una linea.  -->
+<body>
+    <style>
+        body {
+            background-image: url("https://fondosmil.com/fondo/17546.jpg");
+            background-size: cover;
+        }
+    </style>
+
+
+    <div class="barra">
+        {%block main%} <img src="/static/biosupport2.webp" width="140" height="70">{%endblock%}
+
+        <ul>
+
+            <li><a href="{{url_for('mail.create')}}"> Nueva Orden de Servicio</a></li>
+            <li><a href="{{url_for('mail.new')}}"> Nueva Usuario</a></li>
+            <li><a href="{{url_for('mail.calendar')}}">Calendario</a></li>
+            <li><a href="{{url_for('mail.login')}}">Logout</a></li>
+
+        </ul>
+
+
+    </div>
+
+
+    <nav>
+        <b>ORDENES REGISTRADAS</b>
+    </nav>
+
+    <!-- OBTENCION DE INFORMACION -->
+
+    <div class="content">
+
+        <div class="top-bar">
+            <form method="get">
+                <input name="engineer" type="text" placeholder="Filtrar por Ingeniero">
+                <input name="ciudad" type="text" placeholder="Filtrar por Ciuadad">
+                <input name="servicio" type="text" placeholder="Filtrar por Servicio">
+                <button class="button">Filtrar</button>
+                <input name="eliminar" type="text" id="eliminar" size="1px" placeholder="##"></input>
+                <button class="button">Eliminar</button>
+            </form>
+        </div>
+
+        <div class="index-contenido">
+            {%for mail in mails%}
+
+            <hr>
+            <b><span class="service-order">{{mail['folio']}}</span>
+                <span> -</span>
+                <span class="service-order">{{mail['fecha']}}</span>
+                <span> -</span>
+                <span class="service-order">{{mail['ingeniero']}}</span></b>
+            <br>
+            <b><span> Ubicacion:</span></b>
+            <span class="service-order-content">{{mail['estado']}}</span>
+            <span> /</span>
+            <span class="service-order-content">{{mail['ciudad']}}</span>
+            <span> /</span>
+            <span class="service-order-content">{{mail['unidad']}}</span>
+            <br>
+            <b><span> Equipo:</span></b>
+            <span class="service-order-content">{{mail['equipo']}}</span>
+            <span> / Marca:</span>
+            <span class="service-order-content">{{mail['marca']}}</span>
+            <span> / NS:</span>
+            <span class="service-order-content">{{mail['ns']}}</span>
+            <span> / N. Inv:</span>
+            <span class="service-order-content">{{mail['niv']}}</span>
+            <br>
+            <b><span> Servicio:</span></b>
+            <span class="service-order-content">{{mail['servicio']}}</span>
+            <br>
+            <b><span> Se realizo:</span></b>
+            <span class="service-order-content">{{mail['contenido']}}</span>
+            <div>
+
+                {%endfor%}
+            </div>
+        </div>
+</body>
+
+
+<footer>
+
+
+</footer>
+{% endblock %}
